@@ -20,4 +20,6 @@ describe Book do
     expect(invalid_book1).to_not be_valid
     expect(invalid_book2).to_not be_valid
   end
+
+  it { should have_many :checkouts }
 end
