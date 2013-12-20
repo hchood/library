@@ -22,4 +22,18 @@ describe Book do
   end
 
   it { should have_many :checkouts }
+
+  describe  '#seed' do
+    it 'should seed the database with books' do
+      Book.seed
+      harry_potter = Book.find_by(title: 'Harry Potter')
+      just_kids = Book.find_by(title: 'Just Kids')
+      expect(Book.all).to include([harry_potter, just_kids])
+    end
+
+    it 'should not create multiple records for the same book' do
+      2.times { Book.seed }
+      expect(Book.all.count).to eq(4)
+    end
+  end
 end
