@@ -26,9 +26,10 @@ describe Book do
   describe  '#seed' do
     it 'should seed the database with books' do
       Book.seed
-      harry_potter = Book.find_by(title: 'Harry Potter')
-      just_kids = Book.find_by(title: 'Just Kids')
-      expect(Book.all).to include([harry_potter, just_kids])
+      expect(Book.where(title: 'Harry Potter').count).to eq 1
+      expect(Book.where(title: 'Just Kids').count).to eq 1
+      expect(Book.where(title: 'A Tale Of Two Cities').count).to eq 1
+      expect(Book.where(title: 'Twilight').count).to eq 1
     end
 
     it 'should not create multiple records for the same book' do
