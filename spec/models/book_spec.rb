@@ -22,6 +22,8 @@ describe Book do
   end
 
   it { should have_many :checkouts }
+  it { should have_many(:categorizations).dependent(:destroy) }
+  it { should have_many(:categories).through(:categorizations) }
 
   describe  '#seed' do
     it 'should seed the database with books' do

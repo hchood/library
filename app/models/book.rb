@@ -3,6 +3,8 @@ class Book < ActiveRecord::Base
   validates :rating, inclusion: (0..100), allow_blank: true
 
   has_many :checkouts
+  has_many :categorizations, dependent: :destroy
+  has_many :categories, through: :categorizations
 
   class << self
     def seed
